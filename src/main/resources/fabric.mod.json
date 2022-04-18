@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "aofemotes",
+  "version": "0.0.1",
+  "name": "AOF Emotes",
+  "description": "Discord style chat emotes for Minecraft chat. A fork of Fabric Emotes.",
+  "authors": [
+    "AlgidSpace",
+    "TeamAOF"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/aof-emotes/"
+  },
+  "license": "MIT",
+  "icon": "assets/aofemotes/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "ninjaphenix.aofemotes.Main"
+    ]
+  },
+  "mixins": [
+    "aofemotes.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "fabric": "*",
+    "minecraft": "~1.18.1",
+    "java": ">=17"
+  },
+  "breaks": {
+    "fabricemotes": "*"
+  }
+}
