@@ -40,6 +40,16 @@ public final class Emote {
 
     }
 
+    public Emote(int id, String name, Identifier filePath, int frameTimeMs, int width, int height, int frameCount) {
+        this.id = id;
+        this.name = name;
+        this.filePath = filePath;
+        this.frameTimeMs = frameTimeMs;
+        this.width = width;
+        this.height = height;
+        this.frameCount = frameCount;
+    }
+
     public int getId() {
         return id;
     }

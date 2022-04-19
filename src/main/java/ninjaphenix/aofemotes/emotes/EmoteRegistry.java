@@ -6,8 +6,10 @@ import ninjaphenix.aofemotes.config.ConfigEmote;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.IntFunction;
 import java.util.stream.Collectors;
 
+// todo: are int ids even needed?
 public class EmoteRegistry {
     private static EmoteRegistry emoteRegistry;
     private final ConcurrentHashMap<Integer, Emote> emoteIdMap;
@@ -41,6 +43,16 @@ public class EmoteRegistry {
     }
 
     public void registerEmote(Emote emote) throws Exception {
+        if (emoteMap.containsKey(emote.getName())) {
+            throw new Exception("Emote with the name " + emote.getName() + " already exists, failed to register");
+        } else {
+            emoteIdMap.put(emote.getId(), emote);
+            emoteMap.put(emote.getName(), emote);
+        }
+    }
+
+    public void registerEmote(IntFunction<Emote> func) throws Exception {
+        Emote emote = func.apply(emoteMap.size());
         if (emoteMap.containsKey(emote.getName())) {
             throw new Exception("Emote with the name " + emote.getName() + " already exists, failed to register");
         } else {
