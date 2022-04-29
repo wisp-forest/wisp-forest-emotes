@@ -34,6 +34,6 @@ public abstract class ChatHudMixin {
             EmoteRenderHelper.drawEmote(matrices, renderEmote, emoteSize, emoteAlpha, 1.05F, 1.5F);
         }
         matrices.translate(0.0D, 0.5D, 0.0D);
-        return textRenderer.draw(matrices, textReaderVisitor.getOrderedText(), x, y, color);
+        return textRenderer.drawWithShadow(matrices, textReaderVisitor.getOrderedText(), x, y, color);
     }
 }
