@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.List;
 
-@Mixin({ChatHud.class})
+@Mixin(value = {ChatHud.class}, priority = 1010)
 public abstract class ChatHudMixin {
     @Redirect(
             method = {"render"},
