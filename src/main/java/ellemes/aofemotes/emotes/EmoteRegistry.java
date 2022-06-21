@@ -6,7 +6,6 @@ import ellemes.aofemotes.config.ConfigEmote;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.IntFunction;
 import java.util.stream.Collectors;
 
 // todo: are int ids even needed? (spoiler yes)
@@ -37,25 +36,15 @@ public class EmoteRegistry {
         for (ConfigEmote emote : emotes) {
             try {
                 this.registerEmote(emote.asRegistryEmote(emoteMap.size()));
-            } catch (Exception var2) {
-                Constants.LOGGER.error("init(): Failed to load emote: " + emote.getName() + "("+emote.getPath()+")", var2);
+            } catch (Exception e) {
+                Constants.LOGGER.error("init(): Failed to load emote: " + emote.getName() + "(" + emote.getPath() + ")", e);
             }
         }
     }
 
-    public void registerEmote(Emote emote) throws Exception {
+    public void registerEmote(Emote emote) {
         if (emoteMap.containsKey(emote.getName())) {
-            throw new Exception("Emote with the name " + emote.getName() + " already exists, failed to register");
-        } else {
-            emoteIdMap.put(emote.getId(), emote);
-            emoteMap.put(emote.getName(), emote);
-        }
-    }
-
-    public void registerEmote(IntFunction<Emote> func) throws Exception {
-        Emote emote = func.apply(emoteMap.size());
-        if (emoteMap.containsKey(emote.getName())) {
-            throw new Exception("Emote with the name " + emote.getName() + " already exists, failed to register");
+            throw new RuntimeException("Emote with the name " + emote.getName() + " already exists, failed to register");
         } else {
             emoteIdMap.put(emote.getId(), emote);
             emoteMap.put(emote.getName(), emote);

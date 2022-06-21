@@ -33,22 +33,27 @@ public class ConfigHelper {
                             emotes.add(new ConfigEmote(emoteName, jsonReader.nextString(), 0));
                         } else if (type == JsonToken.BEGIN_OBJECT) {
                             jsonReader.beginObject();
-                            ConfigEmote.Builder emote = ConfigEmote.Builder.create(emoteName);
+                            String path = null;
+                            Integer frameTime = null;
                             while (jsonReader.peek() != JsonToken.END_OBJECT) {
                                 String nextName = jsonReader.nextName();
                                 if (nextName.equals("path")) {
-                                    emote.setPath(jsonReader.nextString());
+                                    path = jsonReader.nextString();
                                 } else if (nextName.equals("frame_time")) {
-                                    emote.setFrameTime(jsonReader.nextInt());
+                                    frameTime = jsonReader.nextInt();
                                 } else {
                                     Constants.LOGGER.warn("Emote " + emoteName + " has an invalid entry: " + nextName + ".");
                                 }
                             }
                             jsonReader.endObject();
-                            if (emote.isValid()) {
-                                emotes.add(emote.finish());
+                            if (path != null && frameTime != null) {
+                                if (frameTime < 0) {
+                                    Constants.LOGGER.warn("Invalid emote " + emoteName + " frame_time is less than 0.");
+                                } else {
+                                    emotes.add(new ConfigEmote(emoteName, path, frameTime));
+                                }
                             } else {
-                                Constants.LOGGER.warn("Invalid emote " + emoteName + " missing either path or frame_time entry.");
+                                Constants.LOGGER.warn("Invalid emote " + emoteName + " missing either path or frame_time entry, or frame_time is less than 0.");
                             }
                         }
                     }
