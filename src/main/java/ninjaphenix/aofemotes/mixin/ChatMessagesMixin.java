@@ -31,9 +31,9 @@ public class ChatMessagesMixin {
             while (emotesLeft = emoteMatch.find()) {
                 String emoteName = emoteMatch.group(2);
                 Emote emote = EmoteRegistry.getInstance().getEmoteByName(emoteName);
-                int startPos = emoteMatch.start(1);
-                int endPos = emoteMatch.end(1);
                 if (emote != null) {
+                    int startPos = emoteMatch.start(1);
+                    int endPos = emoteMatch.end(1);
                     message = message.substring(0, startPos) + "▏" + emote.getId() + message.substring(endPos);
                     break;
                 }

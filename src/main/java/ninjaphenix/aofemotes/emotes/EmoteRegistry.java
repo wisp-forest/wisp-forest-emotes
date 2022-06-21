@@ -9,7 +9,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.IntFunction;
 import java.util.stream.Collectors;
 
-// todo: are int ids even needed?
+// todo: are int ids even needed? (spoiler yes)
+//  Should find a way to remove int ids but they are currently used to "fix" line wrapping for when emotes are used
 public class EmoteRegistry {
     private static EmoteRegistry emoteRegistry;
     private final ConcurrentHashMap<Integer, Emote> emoteIdMap;

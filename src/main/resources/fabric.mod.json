@@ -23,9 +23,9 @@
     "aofemotes.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14.7",
-    "fabric-resource-loader-v0": ">=0.5",
-    "minecraft": "~1.19",
+    "fabricloader": ">=0.14.6",
+    "fabric-resource-loader-v0": ">=0.5.3",
+    "minecraft": ">=1.19",
     "java": ">=17"
   },
   "breaks": {

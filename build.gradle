@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.12.1'
+	id 'fabric-loom' version '0.12.50'
 	id 'maven-publish'
 }
 
@@ -9,6 +9,16 @@ targetCompatibility = JavaVersion.VERSION_17
 archivesBaseName = project.archives_base_name
 version = "${project.mod_version}+${project.minecraft_version}"
 group = project.maven_group
+
+loom {
+	runs {
+		named("client") {
+			ideConfigGenerated = false
+		}
+	}
+
+	clientOnlyMinecraftJar()
+}
 
 dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"

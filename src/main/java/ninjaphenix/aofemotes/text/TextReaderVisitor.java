@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TextReaderVisitor implements CharacterVisitor {
-    private final List<TextPart> textParts = new ArrayList<>();
+    private final List<TextPart> parts = new ArrayList<>();
 
     @Override
     public boolean accept(int val, Style style, int currCharInt) {
-        textParts.add(new TextPart(style, (char) currCharInt));
+        parts.add(new TextPart(style, (char) currCharInt));
         return true;
     }
 
@@ -25,29 +25,29 @@ public class TextReaderVisitor implements CharacterVisitor {
 
     private void deleteBetween(int beginIndex, int endIndex) {
         if (endIndex > beginIndex) {
-            textParts.subList(beginIndex, endIndex).clear();
+            parts.subList(beginIndex, endIndex).clear();
         }
     }
 
     private void insertAt(int index, String text, Style style) {
         for (int i = 0; i < text.length(); ++i) {
-            textParts.add(index + i, new TextPart(style, text.charAt(i)));
+            parts.add(index + i, new TextPart(style, text.charAt(i)));
         }
     }
 
     public OrderedText getOrderedText() {
-        MutableText literalText = MutableText.of(Text.of("").getContent());
-        for (TextPart textPart : textParts) {
-            literalText.append(MutableText.of(Text.of(Character.toString(textPart.getChar())).getContent()).setStyle(textPart.getStyle()));
+        MutableText text = Text.literal("");
+        for (TextPart part : parts) {
+            text.append(Text.literal(Character.toString(part.getChar()))).setStyle(part.getStyle());
         }
-        return literalText.asOrderedText();
+        return text.asOrderedText();
     }
 
     public String getString() {
-        StringBuilder sb = new StringBuilder();
-        for (TextPart textPart : textParts) {
-            sb.append(textPart.getChar());
+        StringBuilder builder = new StringBuilder();
+        for (TextPart part : parts) {
+            builder.append(part.getChar());
         }
-        return sb.toString();
+        return builder.toString();
     }
 }
