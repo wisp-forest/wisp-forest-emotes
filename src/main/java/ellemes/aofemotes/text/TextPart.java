@@ -1,4 +1,4 @@
-package ninjaphenix.aofemotes.text;
+package ellemes.aofemotes.text;
 
 import net.minecraft.text.Style;
 

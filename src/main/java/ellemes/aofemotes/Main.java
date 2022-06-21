@@ -1,4 +1,4 @@
-package ninjaphenix.aofemotes;
+package ellemes.aofemotes;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
@@ -6,9 +6,9 @@ import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.util.Identifier;
-import ninjaphenix.aofemotes.config.ConfigEmote;
-import ninjaphenix.aofemotes.config.ConfigHelper;
-import ninjaphenix.aofemotes.emotes.EmoteRegistry;
+import ellemes.aofemotes.config.ConfigEmote;
+import ellemes.aofemotes.config.ConfigHelper;
+import ellemes.aofemotes.emotes.EmoteRegistry;
 
 import java.util.List;
 

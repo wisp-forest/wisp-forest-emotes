@@ -1,4 +1,4 @@
-package ninjaphenix.aofemotes.emotes;
+package ellemes.aofemotes.emotes;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.resource.Resource;

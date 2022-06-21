@@ -1,7 +1,7 @@
-package ninjaphenix.aofemotes.config;
+package ellemes.aofemotes.config;
 
 import net.minecraft.util.Identifier;
-import ninjaphenix.aofemotes.emotes.Emote;
+import ellemes.aofemotes.emotes.Emote;
 
 import java.io.IOException;
 

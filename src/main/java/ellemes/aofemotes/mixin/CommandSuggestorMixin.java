@@ -1,8 +1,8 @@
-package ninjaphenix.aofemotes.mixin;
+package ellemes.aofemotes.mixin;
 
 import net.minecraft.client.gui.screen.CommandSuggestor;
 import net.minecraft.client.network.ClientCommandSource;
-import ninjaphenix.aofemotes.emotes.EmoteRegistry;
+import ellemes.aofemotes.emotes.EmoteRegistry;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;

@@ -3,12 +3,12 @@
 // (powered by FernFlower decompiler)
 //
 
-package ninjaphenix.aofemotes.mixin;
+package ellemes.aofemotes.mixin;
 
 import net.minecraft.client.util.ChatMessages;
-import ninjaphenix.aofemotes.Constants;
-import ninjaphenix.aofemotes.emotes.Emote;
-import ninjaphenix.aofemotes.emotes.EmoteRegistry;
+import ellemes.aofemotes.Constants;
+import ellemes.aofemotes.emotes.Emote;
+import ellemes.aofemotes.emotes.EmoteRegistry;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;

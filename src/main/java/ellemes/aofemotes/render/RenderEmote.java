@@ -1,6 +1,6 @@
-package ninjaphenix.aofemotes.render;
+package ellemes.aofemotes.render;
 
-import ninjaphenix.aofemotes.emotes.Emote;
+import ellemes.aofemotes.emotes.Emote;
 
 @SuppressWarnings("ClassCanBeRecord")
 public final class RenderEmote {

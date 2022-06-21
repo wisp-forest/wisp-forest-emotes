@@ -1,13 +1,13 @@
-package ninjaphenix.aofemotes.mixin;
+package ellemes.aofemotes.mixin;
 
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.hud.ChatHud;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.OrderedText;
-import ninjaphenix.aofemotes.Constants;
-import ninjaphenix.aofemotes.render.EmoteRenderHelper;
-import ninjaphenix.aofemotes.render.RenderEmote;
-import ninjaphenix.aofemotes.text.TextReaderVisitor;
+import ellemes.aofemotes.Constants;
+import ellemes.aofemotes.render.EmoteRenderHelper;
+import ellemes.aofemotes.render.RenderEmote;
+import ellemes.aofemotes.text.TextReaderVisitor;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;

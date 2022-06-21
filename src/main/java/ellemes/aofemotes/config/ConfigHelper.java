@@ -1,11 +1,11 @@
-package ninjaphenix.aofemotes.config;
+package ellemes.aofemotes.config;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 import net.fabricmc.loader.api.FabricLoader;
-import ninjaphenix.aofemotes.Constants;
+import ellemes.aofemotes.Constants;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

@@ -9,14 +9,16 @@
     "TeamAOF"
   ],
   "contact": {
-    "homepage": "https://www.curseforge.com/minecraft/mc-mods/aof-emotes/"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/aof-emotes/",
+    "sources": "https://github.com/Ellemes/aof-emotes/",
+    "issues": "https://github.com/Ellemes/aof-emotes/issues/"
   },
   "license": "MIT",
   "icon": "assets/aofemotes/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
-      "ninjaphenix.aofemotes.Main"
+      "ellemes.aofemotes.Main"
     ]
   },
   "mixins": [

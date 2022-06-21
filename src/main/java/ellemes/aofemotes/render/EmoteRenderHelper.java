@@ -1,14 +1,14 @@
-package ninjaphenix.aofemotes.render;
+package ellemes.aofemotes.render;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Style;
-import ninjaphenix.aofemotes.Constants;
-import ninjaphenix.aofemotes.emotes.Emote;
-import ninjaphenix.aofemotes.emotes.EmoteRegistry;
-import ninjaphenix.aofemotes.text.TextReaderVisitor;
+import ellemes.aofemotes.Constants;
+import ellemes.aofemotes.emotes.Emote;
+import ellemes.aofemotes.emotes.EmoteRegistry;
+import ellemes.aofemotes.text.TextReaderVisitor;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,7 @@
-package ninjaphenix.aofemotes.emotes;
+package ellemes.aofemotes.emotes;
 
-import ninjaphenix.aofemotes.Constants;
-import ninjaphenix.aofemotes.config.ConfigEmote;
+import ellemes.aofemotes.Constants;
+import ellemes.aofemotes.config.ConfigEmote;
 
 import java.util.Collection;
 import java.util.List;
