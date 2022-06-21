@@ -38,7 +38,7 @@ public class TextReaderVisitor implements CharacterVisitor {
     public OrderedText getOrderedText() {
         MutableText text = Text.literal("");
         for (TextPart part : parts) {
-            text.append(Text.literal(Character.toString(part.getChar()))).setStyle(part.getStyle());
+            text.append(Text.literal(Character.toString(part.getChar())).setStyle(part.getStyle()));
         }
         return text.asOrderedText();
     }
