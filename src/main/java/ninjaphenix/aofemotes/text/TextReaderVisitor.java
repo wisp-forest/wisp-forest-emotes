@@ -1,9 +1,10 @@
 package ninjaphenix.aofemotes.text;
 
 import net.minecraft.text.CharacterVisitor;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.OrderedText;
+import net.minecraft.text.Text;
 import net.minecraft.text.Style;
+import net.minecraft.text.MutableText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,9 +36,9 @@ public class TextReaderVisitor implements CharacterVisitor {
     }
 
     public OrderedText getOrderedText() {
-        LiteralText literalText = new LiteralText("");
+        MutableText literalText = MutableText.of(Text.of("").getContent());
         for (TextPart textPart : textParts) {
-            literalText.append(new LiteralText(Character.toString(textPart.getChar())).setStyle(textPart.getStyle()));
+            literalText.append(MutableText.of(Text.of(Character.toString(textPart.getChar())).getContent()).setStyle(textPart.getStyle()));
         }
         return literalText.asOrderedText();
     }

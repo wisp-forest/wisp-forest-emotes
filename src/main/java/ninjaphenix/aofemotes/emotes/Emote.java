@@ -7,6 +7,7 @@ import net.minecraft.util.Identifier;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Optional;
 
 public final class Emote {
     private final int id;
@@ -22,7 +23,9 @@ public final class Emote {
         this.name = name;
         this.filePath = filePath;
         this.frameTimeMs = frameTimeMs;
-        try (Resource resource = MinecraftClient.getInstance().getResourceManager().getResource(filePath)) {
+        Optional<Resource> optRecource = MinecraftClient.getInstance().getResourceManager().getResource(filePath);
+        if(optRecource.isPresent()) {
+            Resource resource = optRecource.get();
             BufferedImage bufferedImage = ImageIO.read(resource.getInputStream());
             if (bufferedImage == null) {
                 throw new IOException("Failed to load image: " + filePath);
@@ -37,6 +40,12 @@ public final class Emote {
                 height = bufferedImage.getHeight();
             }
         }
+        else{
+            width = 0;
+            height = 0;
+            frameCount = -1;
+        }
+
 
     }
 
