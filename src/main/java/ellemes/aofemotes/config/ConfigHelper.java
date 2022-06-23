@@ -16,6 +16,9 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Ellemes
+ */
 public class ConfigHelper {
     public static List<ConfigEmote> loadOrSaveConfig() {
         Path configFile = FabricLoader.getInstance().getConfigDir().resolve(Constants.MOD_ID + ".json");

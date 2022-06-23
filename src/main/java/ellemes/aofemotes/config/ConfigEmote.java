@@ -5,6 +5,9 @@ import ellemes.aofemotes.emotes.Emote;
 
 import java.io.IOException;
 
+/**
+ * @author Ellemes
+ */
 @SuppressWarnings("ClassCanBeRecord")
 public final class ConfigEmote {
     private final String name;
