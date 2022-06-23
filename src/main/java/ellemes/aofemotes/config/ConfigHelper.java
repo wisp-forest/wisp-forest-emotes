@@ -56,7 +56,7 @@ public class ConfigHelper {
                                     emotes.add(new ConfigEmote(emoteName, path, frameTime));
                                 }
                             } else {
-                                Constants.LOGGER.warn("Invalid emote " + emoteName + " missing either path or frame_time entry, or frame_time is less than 0.");
+                                Constants.LOGGER.warn("Invalid emote " + emoteName + " missing either path or frame_time entry.");
                             }
                         }
                     }
