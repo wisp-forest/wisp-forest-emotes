@@ -1,22 +1,19 @@
-package ninjaphenix.aofemotes.render;
+package ellemes.aofemotes.render;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Style;
-import ninjaphenix.aofemotes.Constants;
+import ellemes.aofemotes.Constants;
 import ninjaphenix.aofemotes.emotes.Emote;
 import ninjaphenix.aofemotes.emotes.EmoteRegistry;
-import ninjaphenix.aofemotes.text.TextReaderVisitor;
+import ellemes.aofemotes.text.TextReaderVisitor;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 
 public class EmoteRenderHelper {
-    public static List<RenderEmote> extractEmotes(TextReaderVisitor textReaderVisitor, TextRenderer textRenderer, float renderX, float renderY) {
-        List<RenderEmote> renderEmoteList = new ArrayList<>();
+    public static void extractEmotes(TextReaderVisitor textReaderVisitor, TextRenderer textRenderer, float renderX, float renderY, EmoteRenderConsumer consumer) {
         boolean emotesLeft = true;
         while (emotesLeft) {
             String textStr = textReaderVisitor.getString();
@@ -31,7 +28,7 @@ public class EmoteRenderHelper {
                     int endPos = emoteMatch.end(1);
                     if (emote != null) {
                         float beforeTextWidth = (float) textRenderer.getWidth(textStr.substring(0, startPos));
-                        renderEmoteList.add(new RenderEmote(emote, renderX + beforeTextWidth, renderY));
+                        consumer.accept(emote, renderX + beforeTextWidth, renderY);
                         textReaderVisitor.replaceBetween(startPos, endPos, "  ", Style.EMPTY);
                         break;
                     }
@@ -39,12 +36,12 @@ public class EmoteRenderHelper {
                 }
             }
         }
-        return renderEmoteList;
     }
 
-    public static void drawEmote(MatrixStack matrices, RenderEmote renderEmote, float size, float alpha, float sizeMult, float maxWidthMult) {
-        Emote emote = renderEmote.getEmote();
-        float scaleX = (float) emote.getWidth() / (float) emote.getHeight() * sizeMult;
+    public static void drawEmote(MatrixStack matrices, Emote emote, float emoteX, float emoteY, float size, float alpha, float sizeMult, float maxWidthMult) {
+        RenderSystem.setShaderTexture(0, emote.getTextureIdentifier());
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, alpha);
+        float scaleX = sizeMult * emote.getWidth() / emote.getHeight();
         float scaleY = sizeMult;
         if (scaleX > maxWidthMult) {
             scaleX = maxWidthMult;
@@ -52,14 +49,9 @@ public class EmoteRenderHelper {
         }
         scaleX = (float) Math.round(size * scaleX) / size;
         scaleY = (float) Math.round(size * scaleY) / size;
-        int x = (int) (renderEmote.getX() + size * (1.0F - scaleX) / 2.0F);
-        int y = (int) (renderEmote.getY() + size * (1.0F - scaleY) / 2.0F);
-        RenderSystem.setShaderTexture(0, emote.getTextureIdentifier());
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, alpha);
-        int frameNumber = 1;
-        if (emote.isAnimated()) {
-            frameNumber = (int) (System.currentTimeMillis() / (long) emote.getFrameTimeMs() % (long) emote.getFrameCount());
-        }
+        int x = (int) (emoteX + size * (1.0F - scaleX) / 2.0F);
+        int y = (int) (emoteY + size * (1.0F - scaleY) / 2.0F);
+        int frameNumber = emote.isAnimated() ? (int) (System.currentTimeMillis() / emote.getFrameTimeMs() % emote.getFrameCount()) : 1;
         DrawableHelper.drawTexture(matrices, x, y, Math.round(size * scaleX), Math.round(size * scaleY), 0.0F, (float) (emote.getHeight() * frameNumber), emote.getWidth(), emote.getHeight(), emote.getSheetWidth(), emote.getSheetHeight());
     }
 }

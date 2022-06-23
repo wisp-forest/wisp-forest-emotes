@@ -1,8 +1,7 @@
-package ninjaphenix.aofemotes.text;
+package ellemes.aofemotes.text;
 
 import net.minecraft.text.Style;
 
-@SuppressWarnings("ClassCanBeRecord")
 public final class TextPart {
     private final Style style;
     private final char chr;

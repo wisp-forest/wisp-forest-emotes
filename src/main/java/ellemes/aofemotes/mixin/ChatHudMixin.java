@@ -1,18 +1,15 @@
-package ninjaphenix.aofemotes.mixin;
+package ellemes.aofemotes.mixin;
 
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.hud.ChatHud;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.OrderedText;
-import ninjaphenix.aofemotes.Constants;
-import ninjaphenix.aofemotes.render.EmoteRenderHelper;
-import ninjaphenix.aofemotes.render.RenderEmote;
-import ninjaphenix.aofemotes.text.TextReaderVisitor;
+import ellemes.aofemotes.Constants;
+import ellemes.aofemotes.render.EmoteRenderHelper;
+import ellemes.aofemotes.text.TextReaderVisitor;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
-
-import java.util.List;
 
 @Mixin(value = {ChatHud.class}, priority = 1010)
 public abstract class ChatHudMixin {
@@ -24,15 +21,14 @@ public abstract class ChatHudMixin {
             )
     )
     private int drawWithShadow(TextRenderer textRenderer, MatrixStack matrices, OrderedText text, float x, float y, int color) {
+        matrices.translate(0.0D, -0.5D, 0.0D);
         TextReaderVisitor textReaderVisitor = new TextReaderVisitor();
         text.accept(textReaderVisitor);
         float emoteSize = (float) textRenderer.getWidth(Constants.EMOTE_PLACEHOLDER);
         float emoteAlpha = (float) (color >> 24 & 255) / 255.0f;
-        List<RenderEmote> renderEmoteList = EmoteRenderHelper.extractEmotes(textReaderVisitor, textRenderer, x, y);
-        matrices.translate(0.0D, -0.5D, 0.0D);
-        for (RenderEmote renderEmote : renderEmoteList) {
-            EmoteRenderHelper.drawEmote(matrices, renderEmote, emoteSize, emoteAlpha, 1.05F, 1.5F);
-        }
+        EmoteRenderHelper.extractEmotes(textReaderVisitor, textRenderer, x, y, (emote, emoteX, emoteY) -> {
+            EmoteRenderHelper.drawEmote(matrices, emote, emoteX, emoteY, emoteSize, emoteAlpha, 1.05F, 1.5F);
+        });
         matrices.translate(0.0D, 0.5D, 0.0D);
         return textRenderer.drawWithShadow(matrices, textReaderVisitor.getOrderedText(), x, y, color);
     }

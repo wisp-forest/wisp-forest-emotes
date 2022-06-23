@@ -11,43 +11,40 @@ import java.io.IOException;
 public final class Emote {
     private final int id;
     private final String name;
-    private final Identifier filePath;
+    private final Identifier textureId;
     private final int frameTimeMs;
     private final int width;
     private final int height;
     private final int frameCount;
 
-    public Emote(int id, String name, Identifier filePath, int frameTimeMs) throws IOException {
+    public Emote(int id, String name, Identifier textureId, int frameTimeMs, int width, int height, int frameCount) {
         this.id = id;
         this.name = name;
-        this.filePath = filePath;
-        this.frameTimeMs = frameTimeMs;
-        try (Resource resource = MinecraftClient.getInstance().getResourceManager().getResource(filePath)) {
-            BufferedImage bufferedImage = ImageIO.read(resource.getInputStream());
-            if (bufferedImage == null) {
-                throw new IOException("Failed to load image: " + filePath);
-            }
-            width = bufferedImage.getWidth();
-            if (this.isAnimated()) {
-                frameCount = bufferedImage.getHeight() / width;
-                //noinspection SuspiciousNameCombination
-                height = width;
-            } else {
-                frameCount = 1;
-                height = bufferedImage.getHeight();
-            }
-        }
-
-    }
-
-    public Emote(int id, String name, Identifier filePath, int frameTimeMs, int width, int height, int frameCount) {
-        this.id = id;
-        this.name = name;
-        this.filePath = filePath;
+        this.textureId = textureId;
         this.frameTimeMs = frameTimeMs;
         this.width = width;
         this.height = height;
         this.frameCount = frameCount;
+    }
+
+    public static Emote create(int id, String name, Identifier filePath, int frameTimeMs) throws IOException {
+        if (frameTimeMs < 0) {
+            throw new IllegalArgumentException("frame time must be greater than 0");
+        }
+        Resource resource = MinecraftClient.getInstance().getResourceManager().getResource(filePath);
+        BufferedImage image = ImageIO.read(resource.getInputStream());
+        if (image == null) {
+            throw new IOException("Failed to load image: " + filePath);
+        }
+        int width = image.getWidth();
+        int height = image.getHeight();
+        int frameCount = 1;
+        if (frameTimeMs > 0) {
+            frameCount = height / width;
+            //noinspection SuspiciousNameCombination
+            height = width;
+        }
+        return new Emote(id, name, filePath, frameTimeMs, width, height, frameCount);
     }
 
     public int getId() {
@@ -87,6 +84,6 @@ public final class Emote {
     }
 
     public Identifier getTextureIdentifier() {
-        return filePath;
+        return textureId;
     }
 }
