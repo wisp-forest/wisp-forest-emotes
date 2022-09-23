@@ -17,7 +17,7 @@ loom {
 		}
 	}
 
-	clientOnlyMinecraftJar()
+	//clientOnlyMinecraftJar()
 }
 
 //repositories {
