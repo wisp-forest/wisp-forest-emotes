@@ -140,7 +140,7 @@ public class ConfigHelper {
                 emote("Susge", "susge.png"),
                 emote("podge", "podge.png"),
                 emote("poggus", "poggus.png"),
-                emote("con", "con.png"),
+                emote("con", "con-but-windows-disagrees.png"),
                 emote("conc", "conc.png"),
                 emote("yortfuckinghaw", "yortfuckinghaw.png"),
                 emote("tater", "tater.png"),
