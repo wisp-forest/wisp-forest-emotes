@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "aofemotes",
+  "id": "wisp-forest-emotes",
   "version": "${version}",
-  "name": "AOF Emotes",
-  "description": "Discord style chat emotes for Minecraft chat. A fork of Fabric Emotes.",
+  "name": "Wisp Forest Emotes",
+  "description": "Discord style chat emotes for Minecraft chat. A fork of AOF Emotes which is a fork of Fabric Emotes.",
   "authors": [
     "AlgidSpace",
     "TeamAOF"
